@@ -101,8 +101,8 @@ level = 2;
 
       hints: [
         'Use `const` for values that never change and `let` for values that do.',
-        'Syntax: `const NAME = value;` and `let name = value;`',
-        'Full answer: `const LANGUAGE = "TypeScript"; let level = 1; level = 2;`',
+        'The syntax is `const NAME = value;` and `let name = value;` — try applying that pattern.',
+        'To reassign a `let` variable, just write `variableName = newValue;` on a new line.',
       ],
 
       tests: [
@@ -110,13 +110,13 @@ level = 2;
           description: 'LANGUAGE is "TypeScript"',
           test: "LANGUAGE === 'TypeScript'",
           errorHint:
-            'Declare `const LANGUAGE = "TypeScript";` — make sure the spelling and casing match exactly.',
+            'Make sure your constant is named exactly `LANGUAGE` (all caps) and the value is the string `"TypeScript"` with that exact casing.',
         },
         {
           description: 'level has been reassigned to 2',
           test: 'level === 2',
           errorHint:
-            'Declare `let level = 1;` and then reassign it: `level = 2;`',
+            'Did you declare `level` with `let` (not `const`)? You need to reassign it on a separate line after declaring it.',
         },
       ],
     },
@@ -171,22 +171,27 @@ These work like in other languages — no JS-specific quirks:
 // ============================================
 // Always use === for equality checks!
 
-// TODO: Compare 42 === 42 and store the result in a const called 'sameNumbers'
+// TODO: Does the number 42 strictly equal the number 42?
+//       Store the boolean result in a const called 'sameNumbers'.
 
-// TODO: Compare "hello" === "hello" and store the result in 'sameStrings'
+// TODO: Does the string "hello" strictly equal the string "hello"?
+//       Store the result in a const called 'sameStrings'.
 
-// TODO: Compare theNumber === theString and store the result in 'mixedTypes'
-//       (think carefully — what does strict equality do with different types?)
+// TODO: Does the number 42 strictly equal the string "42"?
+//       Use the variables below to compare — store the result in 'mixedTypes'.
 //       These variables simulate values coming from user input, where
 //       TypeScript doesn't know the exact types at compile time.
 const theNumber = 42;
 const theString: any = "42";
 
-// TODO: Compare 10 > 5 and store the result in 'isGreater'
+// TODO: Is 10 greater than 5?
+//       Store the result in a const called 'isGreater'.
 
-// TODO: Use && (logical AND): (true && false) and store in 'bothTrue'
+// TODO: What does (true && false) evaluate to?
+//       Store the result in a const called 'bothTrue'.
 
-// TODO: Use ! (logical NOT): !false and store in 'notFalse'
+// TODO: What does !false evaluate to?
+//       Store the result in a const called 'notFalse'.
 `,
 
       solution: `// ============================================
@@ -210,42 +215,42 @@ const notFalse = !false;
 `,
 
       hints: [
-        '`===` compares value AND type. `42 === "42"` is `false` because number !== string.',
-        '`&&` returns `true` only when both sides are `true`. `!` flips `true` to `false` and vice versa.',
-        'Expected values: sameNumbers=true, sameStrings=true, mixedTypes=false, isGreater=true, bothTrue=false, notFalse=true',
+        '`===` compares both value AND type. Think about what happens when a number meets a string.',
+        '`&&` is only `true` when BOTH sides are `true`. `!` flips a boolean to its opposite.',
+        'Store each comparison result directly: `const name = <expression>;` — the result is a boolean.',
       ],
 
       tests: [
         {
           description: 'sameNumbers is true (42 === 42)',
           test: 'sameNumbers === true',
-          errorHint: 'Set `const sameNumbers = 42 === 42;` — two identical numbers are strictly equal.',
+          errorHint: 'Two identical numbers compared with `===` should be `true`. Make sure you\'re storing the comparison result, not a hardcoded value.',
         },
         {
           description: 'sameStrings is true ("hello" === "hello")',
           test: 'sameStrings === true',
-          errorHint: 'Set `const sameStrings = "hello" === "hello";`',
+          errorHint: 'Two identical strings compared with `===` should be `true`.',
         },
         {
           description: 'mixedTypes is false (42 === "42" — different types!)',
           test: 'mixedTypes === false',
           errorHint:
-            'Strict equality `===` returns false when comparing a number to a string. Set `const mixedTypes = theNumber === theString;`',
+            'Strict equality `===` returns `false` when the types differ — a number is not a string, even if the digits match.',
         },
         {
           description: 'isGreater is true (10 > 5)',
           test: 'isGreater === true',
-          errorHint: 'Set `const isGreater = 10 > 5;`',
+          errorHint: 'Use the `>` operator to compare the two numbers.',
         },
         {
           description: 'bothTrue is false (true && false)',
           test: 'bothTrue === false',
-          errorHint: '`true && false` evaluates to `false`. Set `const bothTrue = true && false;`',
+          errorHint: '`&&` (logical AND) only returns `true` when both sides are `true`. If either side is `false`, the result is `false`.',
         },
         {
           description: 'notFalse is true (!false)',
           test: 'notFalse === true',
-          errorHint: '`!false` evaluates to `true`. Set `const notFalse = !false;`',
+          errorHint: 'The `!` operator flips a boolean — it turns `false` into `true` and vice versa.',
         },
       ],
     },
@@ -264,21 +269,26 @@ const notFalse = !false;
       description: `JavaScript has two main ways to write functions. Both work in TypeScript.
 
 ### Traditional function declaration
-This is similar to other languages — just no type annotations (we'll add those in Level 1):
+This is similar to other languages. In TypeScript, you must label each parameter \
+with its type using \`: type\` after the parameter name — this is how TypeScript knows \
+what kind of values your function accepts:
 
 \`\`\`ts
-function greet(name) {
+function greet(name: string) {
   return "Hello, " + name + "!";
 }
 greet("Alice"); // "Hello, Alice!"
 \`\`\`
+
+Don't worry about the full type system yet — for now, the types you need are \
+\`number\`, \`string\`, and \`boolean\`. We'll cover types in depth starting in Level 1.
 
 ### Arrow functions (the modern way)
 Arrow functions use \`=>\` (a "fat arrow") instead of the \`function\` keyword. They're the \
 most common style in modern JavaScript and TypeScript:
 
 \`\`\`ts
-const greet = (name) => {
+const greet = (name: string) => {
   return "Hello, " + name + "!";
 };
 \`\`\`
@@ -287,8 +297,8 @@ const greet = (name) => {
 If the function body is a single expression, you can drop the curly braces AND the \`return\` keyword:
 
 \`\`\`ts
-const double = (x) => x * 2;         // returns x * 2
-const isEven = (n) => n % 2 === 0;   // returns true or false
+const double = (x: number) => x * 2;         // returns x * 2
+const isEven = (n: number) => n % 2 === 0;   // returns true or false
 \`\`\`
 
 This is called an **implicit return** — the expression's value is automatically returned.
@@ -304,27 +314,32 @@ const doubled = numbers.map((n) => n * 2); // [2, 4, 6]
 //                      function passed as an argument!
 \`\`\`
 
+(Notice \`n\` doesn't need a type annotation here — TypeScript infers it \
+from the array. You'll learn more about this in later levels.)
+
 If you're from Python, this is like passing a lambda. If you're from Java, it's like \
 a functional interface / lambda expression.`,
 
       mission:
-        'Write a traditional function `add` that takes two parameters and returns their sum. Then write an arrow function `multiply` that does multiplication. Finally, write a short arrow function `isPositive` that returns whether a number is greater than 0.',
+        'Write a traditional function `add` that takes two `number` parameters and returns their sum. Then write an arrow function `multiply` that does multiplication. Finally, write a short arrow function `isPositive` that returns whether a number is greater than 0.',
 
       scaffold: `// ============================================
 // Challenge 3: Functions & Arrows
 // ============================================
 // Practice both function styles.
+// Remember: in TypeScript, label each parameter with its type
+// using : type — e.g., (x: number, y: number)
 
 // TODO: Write a traditional function called 'add' that takes
-//       two parameters (a, b) and returns their sum.
+//       two number parameters and returns their sum.
 //       Example: add(2, 3) should return 5
 
 // TODO: Write an arrow function called 'multiply' that takes
-//       two parameters (a, b) and returns their product.
+//       two number parameters and returns their product.
 //       Store it in a const. Use the block body style with { return ... }
 
 // TODO: Write a short arrow function called 'isPositive' that
-//       takes one parameter (n) and returns true if n > 0.
+//       takes one number parameter and returns true if it's greater than 0.
 //       Use the implicit return style (no curly braces, no return keyword).
 `,
 
@@ -332,22 +347,24 @@ a functional interface / lambda expression.`,
 // Challenge 3: Functions & Arrows
 // ============================================
 // Practice both function styles.
+// Remember: in TypeScript, label each parameter with its type
+// using : type — e.g., (x: number, y: number)
 
-function add(a, b) {
+function add(a: number, b: number) {
   return a + b;
 }
 
-const multiply = (a, b) => {
+const multiply = (a: number, b: number) => {
   return a * b;
 };
 
-const isPositive = (n) => n > 0;
+const isPositive = (n: number) => n > 0;
 `,
 
       hints: [
-        'Traditional function: `function add(a, b) { return a + b; }`',
-        'Arrow with block body: `const multiply = (a, b) => { return a * b; };`',
-        'Short arrow with implicit return: `const isPositive = (n) => n > 0;` — no curly braces, no return keyword.',
+        'Traditional function syntax: `function name(param: type, param: type) { return ...; }`',
+        'Arrow function syntax: `const name = (param: type) => { return ...; };` — don\'t forget the semicolon after the closing brace.',
+        'For implicit return, drop the curly braces AND the return keyword: `const name = (param: type) => expression;`',
       ],
 
       tests: [
@@ -355,7 +372,7 @@ const isPositive = (n) => n > 0;
           description: 'add(2, 3) returns 5',
           test: 'add(2, 3) === 5',
           errorHint:
-            'Write `function add(a, b) { return a + b; }` — make sure you use the `return` keyword.',
+            'Make sure your function uses `return` to return the sum. Without `return`, the function returns `undefined`.',
         },
         {
           description: 'add(0, 0) returns 0',
@@ -366,23 +383,23 @@ const isPositive = (n) => n > 0;
           description: 'multiply(4, 5) returns 20',
           test: 'multiply(4, 5) === 20',
           errorHint:
-            'Write `const multiply = (a, b) => { return a * b; };`',
+            'Store the arrow function in a `const`. Use `{ return ...; }` for the block body style.',
         },
         {
           description: 'isPositive(5) returns true',
           test: 'isPositive(5) === true',
-          errorHint: 'Write `const isPositive = (n) => n > 0;`',
+          errorHint: 'Use implicit return (no curly braces) — the expression after `=>` is the return value.',
         },
         {
           description: 'isPositive(-3) returns false',
           test: 'isPositive(-3) === false',
           errorHint:
-            'Your `isPositive` should return `n > 0`. Negative numbers should return false.',
+            'Your function should check whether the number is greater than 0.',
         },
         {
           description: 'isPositive(0) returns false',
           test: 'isPositive(0) === false',
-          errorHint: '0 is not positive. `0 > 0` is `false`.',
+          errorHint: '0 is not positive — make sure you\'re using `>` (not `>=`).',
         },
       ],
     },
@@ -405,9 +422,12 @@ const isPositive = (n) => n > 0;
 A variable that has been declared but not assigned a value is \`undefined\`:
 
 \`\`\`ts
-let x;
+let x: undefined;
 console.log(x); // undefined
 \`\`\`
+
+(We write \`: undefined\` to tell TypeScript what type this variable holds. \
+In pure JavaScript you'd just write \`let x;\`, but TypeScript needs the label.)
 
 Functions that don't return anything also return \`undefined\`. Accessing a property \
 that doesn't exist gives \`undefined\`.
@@ -462,10 +482,16 @@ const b = zero ?? 42; // 0  — because 0 is not null/undefined
 Safely access properties on values that might be \`null\` or \`undefined\`:
 
 \`\`\`ts
-const user = null;
+// Imagine this function loads a user from a database — it returns null if not found
+function findUser(): { name: string } | null { return null; }
+
+const user = findUser();
 const name = user?.name; // undefined (no crash!)
 // Without ?. this would crash: user.name → TypeError!
-\`\`\``,
+\`\`\`
+
+The \`?.\` operator checks "is this \`null\` or \`undefined\`?" — if yes, it short-circuits \
+and returns \`undefined\` instead of crashing.`,
 
       mission:
         'Create variables demonstrating your understanding of null, undefined, falsy values, `??`, and `?.`. Follow the TODO comments in the scaffold.',
@@ -475,24 +501,25 @@ const name = user?.name; // undefined (no crash!)
 // ============================================
 // Master JavaScript's "nothing" values.
 
-// TODO: Declare a variable 'unset' with let but do NOT assign a value.
-//       What value does it hold? (answer: undefined)
+// TODO: Declare a variable called 'unset' using let, typed as undefined,
+//       but do NOT assign it a value. What value does it hold?
 
-// TODO: Declare a const 'empty' and explicitly assign null to it.
+// TODO: Declare a const called 'empty' and set it to null.
 
-// TODO: Use ?? to provide a fallback. Given:
+// TODO: The ?? operator provides a fallback when a value is null or undefined.
+//       Given the variable below, create a const 'withFallback' that uses ??
+//       to fall back to the string "fallback" if maybeNull is null.
 const maybeNull = null;
-// Create a const 'withFallback' that is maybeNull ?? "fallback"
 
-// TODO: Show that ?? preserves 0 (unlike ||). Given:
+// TODO: What happens when you use ?? with 0? Create a const 'safeCount'
+//       that uses ?? to fall back to 10. Will you get 0 or 10?
 const count = 0;
-// Create a const 'safeCount' that is count ?? 10
-// (should be 0, not 10!)
 
-// TODO: Use ?. for safe property access. Given:
-const config = null;
-// Create a const 'host' that is config?.host
-// (should be undefined, not a crash)
+// TODO: Use ?. (optional chaining) to safely access the 'host' property.
+//       The function below might return null. Create a const 'host' that
+//       safely reads config?.host without crashing.
+function loadConfig(): { host: string } | null { return null; }
+const config = loadConfig();
 `,
 
       solution: `// ============================================
@@ -500,7 +527,7 @@ const config = null;
 // ============================================
 // Master JavaScript's "nothing" values.
 
-let unset;
+let unset: undefined;
 
 const empty = null;
 
@@ -510,14 +537,15 @@ const withFallback = maybeNull ?? "fallback";
 const count = 0;
 const safeCount = count ?? 10;
 
-const config = null;
+function loadConfig(): { host: string } | null { return null; }
+const config = loadConfig();
 const host = config?.host;
 `,
 
       hints: [
-        '`let unset;` — declaring without assigning gives `undefined`. `const empty = null;` — explicit null.',
-        '`??` returns the right side only when the left is `null` or `undefined`. `0 ?? 10` is `0` because `0` is not null/undefined.',
-        '`?.` returns `undefined` instead of crashing when the left side is null/undefined. `null?.host` is `undefined`.',
+        'A `let` variable declared without a value automatically holds `undefined`. For null, you assign it explicitly.',
+        '`??` triggers ONLY on `null` or `undefined` — not on `0`, `""`, or `false`. Think about what that means for `count`.',
+        '`?.` is like saying "if this isn\'t null/undefined, access the property — otherwise give me undefined."',
       ],
 
       tests: [
@@ -525,30 +553,30 @@ const host = config?.host;
           description: 'unset is undefined (declared but not assigned)',
           test: 'unset === undefined',
           errorHint:
-            'Declare with `let unset;` — no assignment. It will automatically be `undefined`.',
+            'Declare the variable with `let` and the type `: undefined`, but don\'t assign a value. It will be `undefined` automatically.',
         },
         {
           description: 'empty is null',
           test: 'empty === null',
-          errorHint: 'Set `const empty = null;`',
+          errorHint: 'Assign `null` directly to a `const`.',
         },
         {
           description: 'withFallback is "fallback" (null ?? "fallback")',
           test: 'withFallback === "fallback"',
           errorHint:
-            'Set `const withFallback = maybeNull ?? "fallback";` — since maybeNull is null, ?? returns the right side.',
+            'Use `??` between `maybeNull` and your fallback string. Since `maybeNull` is null, `??` returns the right side.',
         },
         {
           description: 'safeCount is 0 (0 ?? 10 keeps the 0)',
           test: 'safeCount === 0',
           errorHint:
-            'Set `const safeCount = count ?? 10;` — `??` only triggers on null/undefined, not 0.',
+            'Remember: `??` only falls back on `null`/`undefined`, NOT on `0`. So `0 ?? 10` stays `0`.',
         },
         {
           description: 'host is undefined (null?.host is safe)',
           test: 'host === undefined',
           errorHint:
-            'Set `const host = config?.host;` — optional chaining returns undefined instead of crashing.',
+            'Use `?.` to safely access the `host` property on `config`. Since config is null, it returns undefined instead of crashing.',
         },
       ],
     },
@@ -629,7 +657,7 @@ The spread operator is also used for **rest parameters** in functions — collec
 any number of arguments into an array:
 
 \`\`\`ts
-const sum = (...nums) => nums.reduce((a, b) => a + b, 0);
+const sum = (...nums: number[]) => nums.reduce((a, b) => a + b, 0);
 sum(1, 2, 3, 4); // 10
 \`\`\``,
 
@@ -641,9 +669,9 @@ sum(1, 2, 3, 4); // 10
 // ============================================
 // Modern JS syntax that you'll use everywhere.
 
-// TODO: Create a const 'greeting' using a template literal.
-//       It should produce: "Hello, TypeScript! Version 5"
-//       Use the variables below inside \${...}
+// TODO: Create a const 'greeting' using a template literal (backticks).
+//       It should produce the string: "Hello, TypeScript! Version 5"
+//       Use the variables below — embed them with \${...}
 const lang = "TypeScript";
 const ver = 5;
 
@@ -655,8 +683,8 @@ const pair = [100, 200];
 //       from this object into constants.
 const movie = { title: "Inception", year: 2010, director: "Nolan" };
 
-// TODO: Use the spread operator to create a new array 'merged'
-//       that contains all elements of arr1 followed by all elements of arr2.
+// TODO: Use the spread operator (...) to create a new array 'merged'
+//       that contains all elements of arr1 followed by all of arr2.
 const arr1 = [1, 2, 3];
 const arr2 = [4, 5, 6];
 `,
@@ -682,9 +710,9 @@ const merged = [...arr1, ...arr2];
 `,
 
       hints: [
-        'Template literal syntax: `\\`Hello, ${variableName}!\\`` — use backticks, not regular quotes.',
-        'Array destructuring: `const [first, second] = pair;` — Object destructuring: `const { title, year } = movie;`',
-        'Spread: `const merged = [...arr1, ...arr2];` — the `...` copies all elements from each array.',
+        'Template literals use backticks (\\`) not regular quotes. Inside them, `${expression}` embeds a value.',
+        'Array destructuring: `const [a, b] = someArray;` — Object destructuring: `const { prop1, prop2 } = someObject;`',
+        'The spread operator `...` unpacks an array\'s elements. Think about how you\'d place two spreads inside `[ ]`.',
       ],
 
       tests: [
@@ -692,33 +720,33 @@ const merged = [...arr1, ...arr2];
           description: 'greeting is "Hello, TypeScript! Version 5"',
           test: 'greeting === "Hello, TypeScript! Version 5"',
           errorHint:
-            'Use a template literal: `const greeting = \\`Hello, ${lang}! Version ${ver}\\`;`',
+            'Use backticks and `${}` to embed the variables. Make sure the spacing and punctuation match exactly.',
         },
         {
           description: 'first is 100 (from array destructuring)',
           test: 'first === 100',
-          errorHint: 'Use `const [first, second] = pair;`',
+          errorHint: 'Array destructuring uses square brackets on the left side of `=`. The variable names go inside `[ ]`.',
         },
         {
           description: 'second is 200 (from array destructuring)',
           test: 'second === 200',
-          errorHint: 'Use `const [first, second] = pair;`',
+          errorHint: 'The second variable in the destructuring pattern gets the second element of the array.',
         },
         {
           description: 'title is "Inception" (from object destructuring)',
           test: 'title === "Inception"',
-          errorHint: 'Use `const { title, year } = movie;`',
+          errorHint: 'Object destructuring uses curly braces. The variable names must match the property names in the object.',
         },
         {
           description: 'year is 2010 (from object destructuring)',
           test: 'year === 2010',
-          errorHint: 'Use `const { title, year } = movie;`',
+          errorHint: 'Extract `year` from the movie object using `{ }` destructuring. You don\'t need to extract every property.',
         },
         {
           description: 'merged is [1, 2, 3, 4, 5, 6] (spread operator)',
           test: 'Array.isArray(merged) && merged.length === 6 && merged[0] === 1 && merged[5] === 6',
           errorHint:
-            'Use `const merged = [...arr1, ...arr2];` — the spread operator copies all elements.',
+            'Use `...` before each array name inside a new array literal `[ ]` to spread their elements.',
         },
       ],
     },
@@ -805,21 +833,18 @@ These return arrays, so you can chain \`.map()\`, \`.filter()\`, etc. on them.`,
 const prices = [10, 25, 50, 75, 100];
 
 // TODO: Use .map() to create a new array 'discounted' where each price is halved.
-//       Example: [10, 25, 50, 75, 100] -> [5, 12.5, 25, 37.5, 50]
 
-// TODO: Use .filter() to create a new array 'expensive' containing only prices > 30.
-//       Example: [10, 25, 50, 75, 100] -> [50, 75, 100]
+// TODO: Use .filter() to create a new array 'expensive' containing only prices above 30.
 
 // TODO: Use .reduce() to calculate the 'totalPrice' (sum of all prices).
-//       Example: 10 + 25 + 50 + 75 + 100 = 260
+//       Hint: you'll need an initial value.
 
 const inventory = { apples: 5, bananas: 0, cherries: 12, dates: 0 };
 
 // TODO: Use Object.keys() to get an array of all fruit names into 'fruitNames'.
 
 // TODO: Use Object.entries() with .filter() to create 'inStock' —
-//       an array of [name, count] pairs where count > 0.
-//       Expected: [["apples", 5], ["cherries", 12]]
+//       an array of [name, count] pairs where count is greater than 0.
 `,
 
       solution: `// ============================================
@@ -843,9 +868,9 @@ const inStock = Object.entries(inventory).filter(([name, count]) => count > 0);
 `,
 
       hints: [
-        '`.map((p) => p / 2)` transforms each element. `.filter((p) => p > 30)` keeps elements matching the condition.',
-        '`.reduce((sum, p) => sum + p, 0)` — the second argument (`0`) is the starting value. `sum` accumulates the result.',
-        '`Object.entries(obj)` returns `[key, value]` pairs. You can destructure in the filter: `.filter(([name, count]) => count > 0)`',
+        '`.map()` transforms each element — pass it an arrow function that takes one element and returns the transformed value.',
+        '`.reduce()` needs two things: a callback `(accumulator, current) => ...` and an initial value as the second argument.',
+        '`Object.entries()` gives you `[key, value]` pairs as an array. You can chain `.filter()` on the result and destructure each pair in the callback.',
       ],
 
       tests: [
@@ -853,31 +878,31 @@ const inStock = Object.entries(inventory).filter(([name, count]) => count > 0);
           description: 'discounted is [5, 12.5, 25, 37.5, 50]',
           test: 'Array.isArray(discounted) && discounted.length === 5 && discounted[0] === 5 && discounted[1] === 12.5 && discounted[4] === 50',
           errorHint:
-            'Use `const discounted = prices.map((p) => p / 2);`',
+            'Pass `.map()` an arrow function that divides each price. The callback receives one element at a time.',
         },
         {
           description: 'expensive is [50, 75, 100]',
           test: 'Array.isArray(expensive) && expensive.length === 3 && expensive[0] === 50 && expensive[1] === 75 && expensive[2] === 100',
           errorHint:
-            'Use `const expensive = prices.filter((p) => p > 30);`',
+            '`.filter()` keeps elements where your callback returns `true`. Which prices are above 30?',
         },
         {
           description: 'totalPrice is 260',
           test: 'totalPrice === 260',
           errorHint:
-            'Use `const totalPrice = prices.reduce((sum, p) => sum + p, 0);` — start with 0 as the initial value.',
+            '`.reduce()` takes a callback with (accumulator, currentValue) and an initial value. Add each price to the accumulator.',
         },
         {
           description: 'fruitNames contains all 4 fruit names',
           test: 'Array.isArray(fruitNames) && fruitNames.length === 4 && fruitNames.includes("apples") && fruitNames.includes("dates")',
           errorHint:
-            'Use `const fruitNames = Object.keys(inventory);`',
+            '`Object.keys()` returns an array of the object\'s property names as strings.',
         },
         {
           description: 'inStock contains only items with count > 0',
           test: 'Array.isArray(inStock) && inStock.length === 2 && inStock[0][0] === "apples" && inStock[0][1] === 5 && inStock[1][0] === "cherries" && inStock[1][1] === 12',
           errorHint:
-            'Use `const inStock = Object.entries(inventory).filter(([name, count]) => count > 0);`',
+            'Chain `.filter()` on `Object.entries()`. Each entry is a `[key, value]` pair — you can destructure it in the callback parameter.',
         },
       ],
     },
