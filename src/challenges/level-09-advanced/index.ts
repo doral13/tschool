@@ -8,7 +8,7 @@ export const level09: LevelDefinition = {
   challenges: [
     // ── Challenge 1: Mapped Types ──────────────────────────────
     {
-      id: 'advanced-mapped-types',
+      id: 'L9-C1',
       level: 9,
       number: 1,
       title: 'Mapped Types',
@@ -87,7 +87,7 @@ type Mutable<T> = { -readonly [K in keyof T]: T[K] };
 
     // ── Challenge 2: Conditional Types ─────────────────────────
     {
-      id: 'advanced-conditional-types',
+      id: 'L9-C2',
       level: 9,
       number: 2,
       title: 'Conditional Types',
@@ -172,7 +172,7 @@ type ExcludeType<T, U> = T extends U ? never : T;
 
     // ── Challenge 3: Infer Keyword ─────────────────────────────
     {
-      id: 'advanced-infer',
+      id: 'L9-C3',
       level: 9,
       number: 3,
       title: 'Infer Keyword',
@@ -267,7 +267,7 @@ type AwaitedReturn<T extends (...args: any[]) => any> =
 
     // ── Challenge 4: Utility Types ─────────────────────────────
     {
-      id: 'advanced-utility-types',
+      id: 'L9-C4',
       level: 9,
       number: 4,
       title: 'Utility Types',
@@ -355,7 +355,7 @@ type StrictConfig<T> = Readonly<Required<T>>;
 
     // ── Challenge 5: Recursive Types ───────────────────────────
     {
-      id: 'advanced-recursive-types',
+      id: 'L9-C5',
       level: 9,
       number: 5,
       title: 'Recursive Types',
@@ -469,7 +469,7 @@ type FileSystemEntry = File | Folder;
 
     // ── Challenge 6: BOSS — The Type Wizard ────────────────────
     {
-      id: 'advanced-boss-type-wizard',
+      id: 'L9-C6',
       level: 9,
       number: 6,
       title: 'BOSS: The Type Wizard',

@@ -95,19 +95,17 @@ async function levelSelectMenu(): Promise<void> {
 
   const choices: { name: string; value: number | string }[] = [];
 
-  for (let i = 0; i < ALL_LEVELS.length; i++) {
-    const levelNum = i + 1;
-    const level = ALL_LEVELS[i];
-    const isUnlocked = levelNum === 1 || progress.completedChallenges.some(id => id.startsWith(`L${levelNum - 1}-`));
+  for (const level of ALL_LEVELS) {
+    const isUnlocked = level.number === 0 || progress.completedChallenges.some(id => id.startsWith(`L${level.number - 1}-`));
 
     if (isUnlocked) {
       choices.push({
-        name: `Level ${levelNum}: ${level.title}`,
-        value: levelNum,
+        name: `Level ${level.number}: ${level.title}`,
+        value: level.number,
       });
     } else {
       choices.push({
-        name: chalk.gray(`Level ${levelNum}: ${level.title} (LOCKED)`),
+        name: chalk.gray(`Level ${level.number}: ${level.title} (LOCKED)`),
         value: -1,
       });
     }

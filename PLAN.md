@@ -86,7 +86,15 @@ tschool/
 
 ---
 
-## Curriculum (10 Levels + Boss Battles)
+## Curriculum (11 Levels + Boss Battles)
+
+### Level 0: "JavaScript Essentials" (5 challenges + boss)
+1. Variables & Constants - `let`, `const`, `var`, and why it matters
+2. Equality & Comparisons - `===` vs `==`, truthy/falsy values
+3. Functions & Arrows - Function declarations, expressions, and arrow functions
+4. Null/Undefined & Friends - `null`, `undefined`, optional chaining, nullish coalescing
+5. Templates & Destructuring - Template literals, array/object destructuring, spread/rest
+- BOSS: "JS Collections Workout" - Arrays, objects, Maps, and Sets in action
 
 ### Level 1: "The Basics" (5 challenges + boss)
 1. Hello Types - Declare variables with type annotations (string, number, boolean)
@@ -305,10 +313,12 @@ interface Progress {
 
 ## Status Tracker
 - [x] Planning
-- [ ] Project init
-- [ ] Core engine
-- [ ] Level 1
-- [ ] CLI interface
-- [ ] Levels 2-10
-- [ ] Boss battles
+- [x] Project init
+- [x] Core engine
+- [x] Level 0 (JS Essentials)
+- [x] Level 1
+- [x] CLI interface
+- [x] Levels 2-10
+- [x] Boss battles
 - [ ] Polish & testing
+- [ ] Electron UI testing

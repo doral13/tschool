@@ -5,12 +5,13 @@
 import * as fs from 'fs';
 import * as path from 'path';
 import { Progress, getRank, Achievement } from './types';
+import { getTotalChallenges } from '../challenges';
 
 const PROGRESS_FILE = path.join(process.cwd(), 'progress.json');
 
 export function createDefaultProgress(): Progress {
   return {
-    currentLevel: 1,
+    currentLevel: 0,
     currentChallenge: 1,
     xp: 0,
     rank: 'Novice Coder',
@@ -114,7 +115,7 @@ export function getLevelProgress(progress: Progress, level: number): { completed
 }
 
 export function getOverallProgress(progress: Progress): { completed: number; total: number; percentage: number } {
-  const total = 60; // 10 levels * 6 challenges
+  const total = getTotalChallenges();
   const completed = progress.completedChallenges.length;
   return { completed, total, percentage: Math.round((completed / total) * 100) };
 }

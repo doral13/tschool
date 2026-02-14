@@ -10,7 +10,7 @@ export const level07: LevelDefinition = {
     // 7-1  Numeric Enums
     // -------------------------------------------------------
     {
-      id: 'enums-numeric',
+      id: 'L7-C1',
       level: 7,
       number: 1,
       title: 'Numeric Enums',
@@ -95,7 +95,7 @@ function isSuccess(status: HttpStatus): boolean {
     // 7-2  String Enums
     // -------------------------------------------------------
     {
-      id: 'enums-string',
+      id: 'L7-C2',
       level: 7,
       number: 2,
       title: 'String Enums',
@@ -178,7 +178,7 @@ function formatLog(level: LogLevel, message: string): string {
     // 7-3  Const Enums & Enum Patterns
     // -------------------------------------------------------
     {
-      id: 'enums-const-patterns',
+      id: 'L7-C3',
       level: 7,
       number: 3,
       title: 'Const Enums & Enum Patterns',
@@ -271,7 +271,7 @@ function getThemeLabel(theme: Theme): string {
     // 7-4  Literal Types
     // -------------------------------------------------------
     {
-      id: 'enums-literal-types',
+      id: 'L7-C4',
       level: 7,
       number: 4,
       title: 'Literal Types',
@@ -360,7 +360,7 @@ function cardName(card: Card): string {
     // 7-5  Template Literal Types
     // -------------------------------------------------------
     {
-      id: 'enums-template-literals',
+      id: 'L7-C5',
       level: 7,
       number: 5,
       title: 'Template Literal Types',
@@ -434,7 +434,7 @@ function parseEndpoint(endpoint: Endpoint): { method: HttpMethod; resource: Reso
     // 7-6  BOSS: The Config Builder
     // -------------------------------------------------------
     {
-      id: 'enums-boss',
+      id: 'L7-C6',
       level: 7,
       number: 6,
       title: 'BOSS: The Config Builder',

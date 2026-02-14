@@ -94,7 +94,7 @@ export const NEW_PLAYER = `
   Welcome to TSchool!
 
   You're about to embark on a journey to master TypeScript.
-  Through 10 levels of increasingly challenging puzzles,
+  Through 11 levels of increasingly challenging puzzles,
   you'll go from complete beginner to TypeScript Guru.
 
   How it works:

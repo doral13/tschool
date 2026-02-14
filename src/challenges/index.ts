@@ -5,6 +5,7 @@
 import { LevelDefinition, Challenge } from '../engine/types';
 
 // Import all level definitions
+import { level00 } from './level-00-js-essentials';
 import { level01 } from './level-01-basics';
 import { level02 } from './level-02-functions';
 import { level03 } from './level-03-collections';
@@ -17,6 +18,7 @@ import { level09 } from './level-09-advanced';
 import { level10 } from './level-10-realworld';
 
 export const ALL_LEVELS: LevelDefinition[] = [
+  level00,
   level01,
   level02,
   level03,

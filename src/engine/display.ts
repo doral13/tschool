@@ -7,6 +7,7 @@ import { Progress, Challenge, getRank, getNextRank, RANKS, ValidationResult } fr
 import { LOGO, progressBar, xpBar, VICTORY, BOSS_INTRO, BOSS_VICTORY, LEVEL_UP, NEW_PLAYER, STREAK_FIRE } from '../data/ascii-art';
 import { formatCompilationFeedback, formatTestFeedback, getVictoryMessage, getFlawlessMessage, getStreakMessage, getEncouragingMessage } from './feedback';
 import { getOverallProgress, getLevelProgress, getAchievement } from './progress';
+import { ALL_LEVELS } from '../challenges';
 
 export function clearScreen(): void {
   process.stdout.write('\x1B[2J\x1B[0f');
@@ -56,23 +57,9 @@ export function showLevelSelect(progress: Progress): void {
   console.log(chalk.cyan.bold('  === LEVEL SELECT ==='));
   console.log('');
 
-  const levelNames = [
-    'The Basics',
-    'Functions',
-    'Collections',
-    'Interfaces & Type Aliases',
-    'Unions & Narrowing',
-    'Generics',
-    'Enums & Literal Types',
-    'Classes & OOP',
-    'Advanced Types',
-    'Real World TypeScript',
-  ];
-
-  for (let i = 0; i < levelNames.length; i++) {
-    const levelNum = i + 1;
-    const lp = getLevelProgress(progress, levelNum);
-    const isUnlocked = levelNum === 1 || progress.completedChallenges.some(id => id.startsWith(`L${levelNum - 1}-`));
+  for (const level of ALL_LEVELS) {
+    const lp = getLevelProgress(progress, level.number);
+    const isUnlocked = level.number === 0 || progress.completedChallenges.some(id => id.startsWith(`L${level.number - 1}-`));
     const isComplete = lp.completed >= lp.total;
 
     let status: string;
@@ -85,9 +72,9 @@ export function showLevelSelect(progress: Progress): void {
     }
 
     const nameColor = isUnlocked ? chalk.white : chalk.gray;
-    const numStr = chalk.cyan(`[${levelNum}]`);
+    const numStr = chalk.cyan(`[${level.number}]`);
 
-    console.log(`  ${numStr} ${nameColor(levelNames[i])}  ${status}`);
+    console.log(`  ${numStr} ${nameColor(level.title)}  ${status}`);
   }
   console.log('');
 }

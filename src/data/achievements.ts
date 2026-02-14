@@ -38,7 +38,7 @@ export const ACHIEVEMENTS: Achievement[] = [
     title: 'Boss Slayer',
     description: 'Defeat your first boss battle',
     icon: '🐉',
-    check: (p: Progress) => p.completedChallenges.some(id => id.includes('boss')),
+    check: (p: Progress) => p.completedChallenges.some(id => id.endsWith('-C6')),
   },
   {
     id: 'level-complete-1',
@@ -75,7 +75,7 @@ export const ACHIEVEMENTS: Achievement[] = [
     title: 'Halfway There!',
     description: 'Complete 50% of all challenges',
     icon: '🏔️',
-    check: (p: Progress) => p.completedChallenges.length >= 30,
+    check: (p: Progress) => p.completedChallenges.length >= 33,
   },
   {
     id: 'type-apprentice',
@@ -96,7 +96,7 @@ export const ACHIEVEMENTS: Achievement[] = [
     title: 'TypeScript Guru',
     description: 'Complete the entire course and reach the highest rank',
     icon: '👑',
-    check: (p: Progress) => p.xp >= 4000 && p.completedChallenges.length >= 60,
+    check: (p: Progress) => p.xp >= 4000 && p.completedChallenges.length >= 66,
   },
   {
     id: 'persistent',

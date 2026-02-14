@@ -8,7 +8,7 @@ export const level08: LevelDefinition = {
   challenges: [
     // ── Challenge 1: Class Basics ──────────────────────────────
     {
-      id: 'classes-basics',
+      id: 'L8-C1',
       level: 8,
       number: 1,
       title: 'Class Basics',
@@ -101,7 +101,7 @@ class Dog {
 
     // ── Challenge 2: Access Modifiers ──────────────────────────
     {
-      id: 'classes-access-modifiers',
+      id: 'L8-C2',
       level: 8,
       number: 2,
       title: 'Access Modifiers',
@@ -203,7 +203,7 @@ let you control property access with logic.
 
     // ── Challenge 3: Abstract Classes ──────────────────────────
     {
-      id: 'classes-abstract',
+      id: 'L8-C3',
       level: 8,
       number: 3,
       title: 'Abstract Classes',
@@ -310,7 +310,7 @@ class MemoryStore extends DataStore {
 
     // ── Challenge 4: Implementing Interfaces ───────────────────
     {
-      id: 'classes-implementing-interfaces',
+      id: 'L8-C4',
       level: 8,
       number: 4,
       title: 'Implementing Interfaces',
@@ -413,7 +413,7 @@ class Temperature implements Comparable<Temperature>, Equatable {
 
     // ── Challenge 5: Mixins & Patterns ─────────────────────────
     {
-      id: 'classes-mixins',
+      id: 'L8-C5',
       level: 8,
       number: 5,
       title: 'Mixins & Patterns',
@@ -529,7 +529,7 @@ const SuperUser = Serializable(Validatable(User));
 
     // ── Challenge 6: BOSS — The Game Engine ────────────────────
     {
-      id: 'classes-boss-game-engine',
+      id: 'L8-C6',
       level: 8,
       number: 6,
       title: 'BOSS: The Game Engine',

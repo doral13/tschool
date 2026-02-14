@@ -10,7 +10,7 @@ export const level04: LevelDefinition = {
     // Challenge 1 — Your First Interface
     // -------------------------------------------------------
     {
-      id: 'l4-c1-first-interface',
+      id: 'L4-C1',
       level: 4,
       number: 1,
       title: 'Your First Interface',
@@ -86,7 +86,7 @@ export const level04: LevelDefinition = {
     // Challenge 2 — Extending Interfaces
     // -------------------------------------------------------
     {
-      id: 'l4-c2-extending-interfaces',
+      id: 'L4-C2',
       level: 4,
       number: 2,
       title: 'Extending Interfaces',
@@ -165,7 +165,7 @@ export const level04: LevelDefinition = {
     // Challenge 3 — Type Aliases
     // -------------------------------------------------------
     {
-      id: 'l4-c3-type-aliases',
+      id: 'L4-C3',
       level: 4,
       number: 3,
       title: 'Type Aliases',
@@ -247,7 +247,7 @@ export const level04: LevelDefinition = {
     // Challenge 4 — Intersection Types
     // -------------------------------------------------------
     {
-      id: 'l4-c4-intersection-types',
+      id: 'L4-C4',
       level: 4,
       number: 4,
       title: 'Intersection Types',
@@ -326,7 +326,7 @@ export const level04: LevelDefinition = {
     // Challenge 5 — Declaration Merging
     // -------------------------------------------------------
     {
-      id: 'l4-c5-declaration-merging',
+      id: 'L4-C5',
       level: 4,
       number: 5,
       title: 'Declaration Merging',
@@ -408,7 +408,7 @@ export const level04: LevelDefinition = {
     // Challenge 6 — BOSS: The API Architect
     // -------------------------------------------------------
     {
-      id: 'l4-c6-boss-api-architect',
+      id: 'L4-C6',
       level: 4,
       number: 6,
       title: 'BOSS: The API Architect',

@@ -10,7 +10,7 @@ export const level05: LevelDefinition = {
     // Challenge 1 — Union Types
     // -------------------------------------------------------
     {
-      id: 'l5-c1-union-types',
+      id: 'L5-C1',
       level: 5,
       number: 1,
       title: 'Union Types',
@@ -80,7 +80,7 @@ export const level05: LevelDefinition = {
     // Challenge 2 — Discriminated Unions
     // -------------------------------------------------------
     {
-      id: 'l5-c2-discriminated-unions',
+      id: 'L5-C2',
       level: 5,
       number: 2,
       title: 'Discriminated Unions',
@@ -190,7 +190,7 @@ export const level05: LevelDefinition = {
     // Challenge 3 — Type Guards
     // -------------------------------------------------------
     {
-      id: 'l5-c3-type-guards',
+      id: 'L5-C3',
       level: 5,
       number: 3,
       title: 'Type Guards',
@@ -309,7 +309,7 @@ export const level05: LevelDefinition = {
     // Challenge 4 — Custom Type Guards
     // -------------------------------------------------------
     {
-      id: 'l5-c4-custom-type-guards',
+      id: 'L5-C4',
       level: 5,
       number: 4,
       title: 'Custom Type Guards',
@@ -435,7 +435,7 @@ export const level05: LevelDefinition = {
     // Challenge 5 — Exhaustive Checks
     // -------------------------------------------------------
     {
-      id: 'l5-c5-exhaustive-checks',
+      id: 'L5-C5',
       level: 5,
       number: 5,
       title: 'Exhaustive Checks',
@@ -548,7 +548,7 @@ export const level05: LevelDefinition = {
     // Challenge 6 — BOSS: The Shape Shifter
     // -------------------------------------------------------
     {
-      id: 'l5-c6-boss-shape-shifter',
+      id: 'L5-C6',
       level: 5,
       number: 6,
       title: 'BOSS: The Shape Shifter',

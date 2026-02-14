@@ -8,7 +8,7 @@ export const level10: LevelDefinition = {
   challenges: [
     // ── Challenge 1: Module Systems ────────────────────────────
     {
-      id: 'realworld-modules',
+      id: 'L10-C1',
       level: 10,
       number: 1,
       title: 'Module Systems',
@@ -152,7 +152,7 @@ function createLogger(level: LogLevel): Logger {
 
     // ── Challenge 2: Declaration Files ─────────────────────────
     {
-      id: 'realworld-declaration-files',
+      id: 'L10-C2',
       level: 10,
       number: 2,
       title: 'Declaration Files',
@@ -292,7 +292,7 @@ class Config {
 
     // ── Challenge 3: Type Narrowing Patterns ───────────────────
     {
-      id: 'realworld-type-narrowing',
+      id: 'L10-C3',
       level: 10,
       number: 3,
       title: 'Type Narrowing Patterns',
@@ -438,7 +438,7 @@ function describeShape(shape: Shape): string {
 
     // ── Challenge 4: Error Handling Types ───────────────────────
     {
-      id: 'realworld-error-handling',
+      id: 'L10-C4',
       level: 10,
       number: 4,
       title: 'Error Handling Types',
@@ -588,7 +588,7 @@ function validateAge(age: unknown): Result<number, string> {
 
     // ── Challenge 5: Builder Pattern & Fluent APIs ─────────────
     {
-      id: 'realworld-builder-pattern',
+      id: 'L10-C5',
       level: 10,
       number: 5,
       title: 'Builder Pattern & Fluent APIs',
@@ -752,7 +752,7 @@ enable chaining.
 
     // ── Challenge 6: BOSS — The Final Boss ─────────────────────
     {
-      id: 'realworld-boss-final',
+      id: 'L10-C6',
       level: 10,
       number: 6,
       title: 'BOSS: The Final Boss',

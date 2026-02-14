@@ -10,7 +10,7 @@ export const level06: LevelDefinition = {
     // 6-1  Generic Functions
     // -------------------------------------------------------
     {
-      id: 'generics-functions',
+      id: 'L6-C1',
       level: 6,
       number: 1,
       title: 'Generic Functions',
@@ -77,7 +77,7 @@ function getFirst<T>(arr: T[]): T | undefined {
     // 6-2  Generic Constraints
     // -------------------------------------------------------
     {
-      id: 'generics-constraints',
+      id: 'L6-C2',
       level: 6,
       number: 2,
       title: 'Generic Constraints',
@@ -150,7 +150,7 @@ function getProperty<T, K extends keyof T>(obj: T, key: K): T[K] {
     // 6-3  Generic Interfaces & Types
     // -------------------------------------------------------
     {
-      id: 'generics-interfaces',
+      id: 'L6-C3',
       level: 6,
       number: 3,
       title: 'Generic Interfaces & Types',
@@ -228,7 +228,7 @@ function fail<T>(error: string): Result<T> {
     // 6-4  Multiple Type Parameters
     // -------------------------------------------------------
     {
-      id: 'generics-multiple-params',
+      id: 'L6-C4',
       level: 6,
       number: 4,
       title: 'Multiple Type Parameters',
@@ -308,7 +308,7 @@ function zip<T, U>(arr1: T[], arr2: U[]): [T, U][] {
     // 6-5  Generic Defaults
     // -------------------------------------------------------
     {
-      id: 'generics-defaults',
+      id: 'L6-C5',
       level: 6,
       number: 5,
       title: 'Generic Defaults',
@@ -397,7 +397,7 @@ function createStack<T = number>(): Stack<T> {
     // 6-6  BOSS: The Collection Master
     // -------------------------------------------------------
     {
-      id: 'generics-boss',
+      id: 'L6-C6',
       level: 6,
       number: 6,
       title: 'BOSS: The Collection Master',

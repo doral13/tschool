@@ -17,7 +17,7 @@ export const level03: LevelDefinition = {
     // Challenge 1 — Typed Arrays
     // --------------------------------------------------------
     {
-      id: 'l03-c01-typed-arrays',
+      id: 'L3-C1',
       level: 3,
       number: 1,
       title: 'Typed Arrays',
@@ -104,7 +104,7 @@ export const level03: LevelDefinition = {
     // Challenge 2 — Tuples
     // --------------------------------------------------------
     {
-      id: 'l03-c02-tuples',
+      id: 'L3-C2',
       level: 3,
       number: 2,
       title: 'Tuples',
@@ -191,7 +191,7 @@ export const level03: LevelDefinition = {
     // Challenge 3 — Object Types
     // --------------------------------------------------------
     {
-      id: 'l03-c03-object-types',
+      id: 'L3-C3',
       level: 3,
       number: 3,
       title: 'Object Types',
@@ -290,7 +290,7 @@ export const level03: LevelDefinition = {
     // Challenge 4 — Readonly & Optional Properties
     // --------------------------------------------------------
     {
-      id: 'l03-c04-readonly-optional',
+      id: 'L3-C4',
       level: 3,
       number: 4,
       title: 'Readonly & Optional Properties',
@@ -402,7 +402,7 @@ export const level03: LevelDefinition = {
     // Challenge 5 — Index Signatures
     // --------------------------------------------------------
     {
-      id: 'l03-c05-index-signatures',
+      id: 'L3-C5',
       level: 3,
       number: 5,
       title: 'Index Signatures',
@@ -527,7 +527,7 @@ export const level03: LevelDefinition = {
     // Challenge 6 — BOSS: The Data Wrangler
     // --------------------------------------------------------
     {
-      id: 'l03-c06-boss-data-wrangler',
+      id: 'L3-C6',
       level: 3,
       number: 6,
       title: 'BOSS: The Data Wrangler',
