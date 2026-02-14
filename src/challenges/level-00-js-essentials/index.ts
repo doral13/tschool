@@ -175,8 +175,12 @@ These work like in other languages — no JS-specific quirks:
 
 // TODO: Compare "hello" === "hello" and store the result in 'sameStrings'
 
-// TODO: Compare 42 === "42" and store the result in 'mixedTypes'
+// TODO: Compare theNumber === theString and store the result in 'mixedTypes'
 //       (think carefully — what does strict equality do with different types?)
+//       These variables simulate values coming from user input, where
+//       TypeScript doesn't know the exact types at compile time.
+const theNumber = 42;
+const theString: any = "42";
 
 // TODO: Compare 10 > 5 and store the result in 'isGreater'
 
@@ -194,7 +198,9 @@ const sameNumbers = 42 === 42;
 
 const sameStrings = "hello" === "hello";
 
-const mixedTypes = 42 === "42";
+const theNumber = 42;
+const theString: any = "42";
+const mixedTypes = theNumber === theString;
 
 const isGreater = 10 > 5;
 
@@ -224,7 +230,7 @@ const notFalse = !false;
           description: 'mixedTypes is false (42 === "42" — different types!)',
           test: 'mixedTypes === false',
           errorHint:
-            'Strict equality `===` returns false when comparing a number to a string. Set `const mixedTypes = 42 === "42";`',
+            'Strict equality `===` returns false when comparing a number to a string. Set `const mixedTypes = theNumber === theString;`',
         },
         {
           description: 'isGreater is true (10 > 5)',
