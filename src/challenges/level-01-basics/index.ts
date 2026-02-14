@@ -71,9 +71,9 @@ let isTypeSafe: boolean = true;
 `,
 
       hints: [
-        'Use the syntax: let variableName: type = value;',
+        'Use the syntax: `let variableName: type = value;`',
         'The three types you need are `string`, `number`, and `boolean` — all lowercase.',
-        'Example answer: `let greeting: string = "hello"; let year: number = 2026; let isTypeSafe: boolean = true;`',
+        'The variable names must match exactly: `greeting`, `year`, `isTypeSafe`.',
       ],
 
       tests: [
@@ -170,8 +170,8 @@ const FRAMEWORK = "TSchool";
 
       hints: [
         'Just use `let variableName = value;` — no colon, no type. TypeScript figures it out.',
-        'For the const, use `const FRAMEWORK = "SomeString";` — the type will be the literal string, not `string`.',
-        'Example: `let language = "TypeScript"; let version = 5; let isStrictMode = true; const FRAMEWORK = "React";`',
+        'For the const, use `const NAME = "someString";` — hover over it in your editor to see the literal type.',
+        'Remember: `let` infers the general type (`string`), while `const` infers the literal value (`"exact string"`).',
       ],
 
       tests: [
