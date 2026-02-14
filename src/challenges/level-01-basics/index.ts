@@ -250,13 +250,14 @@ if (typeof input === "string") {
 // ============================================
 // Learn the difference between any and unknown.
 
-// TODO: Declare 'flexible' with type 'any', assign it the number 42
+// TODO: Declare 'flexible' with type 'any', assign it a number
 
-// TODO: Declare 'safe' with type 'unknown', assign it the string "TypeScript"
+// TODO: Declare 'safe' with type 'unknown', assign it a string
 
-// TODO: Declare 'result' as type string.
-//       Use a typeof check to narrow 'safe' and assign it to 'result'.
-//       If 'safe' is not a string, assign "fallback" to 'result'.
+// TODO: 'result' should hold the value of 'safe' if it's a string,
+//       or "fallback" otherwise.
+//       You can't use an 'unknown' value directly — you need to
+//       narrow it first with a typeof check.
 let result: string;
 `,
 
@@ -279,28 +280,28 @@ if (typeof safe === "string") {
 
       hints: [
         '`any` and `unknown` are both types you write after the colon: `let x: any = ...`',
-        'To narrow `unknown`, use `if (typeof safe === "string") { result = safe; }`',
-        'Don\'t forget the else branch! Set `result = "fallback"` when `safe` is not a string.',
+        'You can\'t call methods or access properties on an `unknown` value directly. Use `if (typeof x === "string")` to narrow it first.',
+        'Don\'t forget the else branch — `result` must always be assigned a `string`, even when `safe` isn\'t one.',
       ],
 
       tests: [
         {
           description: 'flexible is declared and holds a number',
-          test: "typeof flexible !== 'undefined' && flexible === 42",
+          test: "typeof flexible !== 'undefined' && typeof flexible === 'number'",
           errorHint:
-            'Declare `flexible` with type `any` and assign it the number `42`.',
+            'Declare `flexible` with type `any` and assign it any number value.',
         },
         {
           description: 'safe is declared and holds a string',
-          test: "typeof safe !== 'undefined' && safe === 'TypeScript'",
+          test: "typeof safe !== 'undefined' && typeof safe === 'string'",
           errorHint:
-            'Declare `safe` with type `unknown` and assign it the string `"TypeScript"`.',
+            'Declare `safe` with type `unknown` and assign it any string value.',
         },
         {
           description: 'result is correctly narrowed to a string',
-          test: "typeof result === 'string' && result === 'TypeScript'",
+          test: "typeof result === 'string' && result === safe",
           errorHint:
-            'Use a `typeof` check on `safe`. If it is a string, assign it to `result`; otherwise assign `"fallback"`.',
+            'Use `typeof` to check if `safe` is a string before assigning it to `result`. Don\'t forget the else branch for the fallback.',
         },
       ],
     },
@@ -381,9 +382,9 @@ const userName: string = (rawData as { name: string; level: number }).name;
 `,
 
       hints: [
-        'The syntax is `(expression as Type)`. Wrap it in parentheses to access properties: `(value as string).length`.',
-        'For `rawData`, the full assertion type is `{ name: string; level: number }`. Use it like: `(rawData as { name: string; level: number }).name`.',
-        'Full answer: `const inputLength: number = (input as string).length;` and `const userName: string = (rawData as { name: string; level: number }).name;`',
+        'The syntax is `(expression as Type)`. Wrap it in parentheses to access properties afterward.',
+        'For `rawData`, you need to assert it as an object type that has the properties you want to access.',
+        'Remember: assertions don\'t convert data. For `rawData`, assert to an object type with `name` and `level` properties, then access `.name`.',
       ],
 
       tests: [
@@ -457,13 +458,13 @@ colors.push("yellow"); // ERROR — readonly tuple
 // ============================================
 // Use 'as const' for immutable, literal types.
 
-// TODO: Declare APP_CONFIG with 'as const'
-//       Properties: appName (any string), maxRetries (any number), debug (true or false)
-//       Example: const APP_CONFIG = { ... } as const;
+// TODO: Declare APP_CONFIG as an object with properties:
+//       appName (any string), maxRetries (any number), debug (true or false)
+//       Make it deeply immutable using 'as const'.
 
-// TODO: Declare DIRECTIONS as a readonly tuple using 'as const'
-//       Values: "north", "south", "east", "west"
-//       Example: const DIRECTIONS = [ ... ] as const;
+// TODO: Declare DIRECTIONS as an array with exactly these values:
+//       "north", "south", "east", "west"
+//       Make it a readonly tuple using 'as const'.
 `,
 
       solution: `// ============================================
@@ -481,9 +482,9 @@ const DIRECTIONS = ["north", "south", "east", "west"] as const;
 `,
 
       hints: [
-        'Put `as const` after the closing brace/bracket: `const x = { ... } as const;`',
-        '`APP_CONFIG` needs three properties: `appName`, `maxRetries`, and `debug`. `DIRECTIONS` is an array of four strings.',
-        'Example: `const APP_CONFIG = { appName: "MyApp", maxRetries: 3, debug: true } as const; const DIRECTIONS = ["north", "south", "east", "west"] as const;`',
+        'Put `as const` after the closing brace or bracket of your object/array literal.',
+        '`APP_CONFIG` needs three properties with the exact names from the mission. `DIRECTIONS` is an array with four string elements.',
+        '`as const` goes at the end: `const x = { ... } as const;` — this makes all properties readonly and narrows them to literal types.',
       ],
 
       tests: [
@@ -497,13 +498,13 @@ const DIRECTIONS = ["north", "south", "east", "west"] as const;
           description: 'APP_CONFIG is readonly (uses as const)',
           test: "(() => { try { (APP_CONFIG as any).appName = 'changed'; return APP_CONFIG.appName !== 'changed'; } catch { return true; } })()",
           errorHint:
-            'Did you add `as const` after the object? It should make the properties readonly.',
+            'Did you add `as const` after the object literal? It should make the properties readonly.',
         },
         {
           description: 'DIRECTIONS is a readonly tuple with 4 compass directions',
           test: "Array.isArray(DIRECTIONS) && DIRECTIONS.length === 4 && DIRECTIONS[0] === 'north' && DIRECTIONS[1] === 'south' && DIRECTIONS[2] === 'east' && DIRECTIONS[3] === 'west'",
           errorHint:
-            'Declare DIRECTIONS as `["north", "south", "east", "west"] as const`. Order matters!',
+            'Make sure the array has exactly four elements in the right order: north, south, east, west. Don\'t forget `as const` at the end.',
         },
       ],
     },
@@ -610,9 +611,9 @@ const GAME_CONFIG = {
 `,
 
       hints: [
-        'Start with the easy ones: match each annotation to the actual value. `"Hero"` is a string, `100` is a number, `true` is a boolean.',
-        'For BUG 4, change `any` to `unknown`, then use `if (typeof userInput === "string")` to narrow before calling `.toUpperCase()`. For BUG 5, assert as `string` first, then convert with `Number()`.',
-        'For BUG 6, add `as const` after the object literal and remove the line that mutates `maxPlayers`.',
+        'Start with the easy ones: look at the value on the right side of each assignment. What type is that value? The annotation on the left should match.',
+        'For BUG 4, think about what `unknown` forces you to do before you can use a value — you need to prove its type first. For BUG 5, the value is a string that *looks like* a number. You can\'t just assert it directly to a number — you need to convert it properly.',
+        'For BUG 6, recall how you can make an object fully immutable at the type level. If a property shouldn\'t be changeable, the line that changes it needs to go.',
       ],
 
       tests: [
@@ -620,37 +621,37 @@ const GAME_CONFIG = {
           description: 'playerName is a string with value "Hero"',
           test: "typeof playerName === 'string' && playerName === 'Hero'",
           errorHint:
-            'Change the type annotation of `playerName` from `number` to `string`.',
+            'Look at the value assigned to `playerName`. The type annotation doesn\'t match the actual value.',
         },
         {
           description: 'score is a number with value 100',
           test: "typeof score === 'number' && score === 100",
           errorHint:
-            'Change the type annotation of `score` from `string` to `number`.',
+            'Look at the value assigned to `score`. The type annotation doesn\'t match the actual value.',
         },
         {
           description: 'isAlive is a boolean with value true',
           test: "typeof isAlive === 'boolean' && isAlive === true",
           errorHint:
-            'Change the type annotation of `isAlive` from `string` to `boolean`.',
+            'Look at the value assigned to `isAlive`. The type annotation doesn\'t match the actual value.',
         },
         {
           description: 'shout is the uppercase version of userInput',
           test: "typeof shout === 'string' && shout === 'SOME INPUT'",
           errorHint:
-            'Change `userInput` to `unknown`, then narrow with `typeof` before calling `.toUpperCase()`.',
+            'The variable should be `unknown` instead of `any`. With `unknown`, you must narrow the type before using string methods.',
         },
         {
           description: 'parsedScore is the numeric value 250',
           test: "typeof parsedScore === 'number' && parsedScore === 250",
           errorHint:
-            'Assert `rawScore` as `string`, then convert to a number: `Number(rawScore as string)`.',
+            'You can\'t assert directly from `unknown` to `number` when the underlying value is a string. Think about what intermediate step would let you convert it properly.',
         },
         {
           description: 'GAME_CONFIG has the correct values',
           test: "GAME_CONFIG.title === 'TSchool Quest' && GAME_CONFIG.maxPlayers === 4 && GAME_CONFIG.online === true",
           errorHint:
-            'Add `as const` to GAME_CONFIG and remove the mutation line (`GAME_CONFIG.maxPlayers = 99`).',
+            'The object should be fully immutable. If TypeScript is allowing a property to be reassigned, you haven\'t locked the object down properly. Also check if any line is trying to mutate it.',
         },
       ],
     },
